@@ -14,8 +14,9 @@ export const Filter = () => {
         type="filter"
         value={filter}
         name="filter"
-      />{' '}
-      Find contacts by name
+        required
+        placeholder="Find contacts by name"
+      />
     </LabelFilter>
   );
 };

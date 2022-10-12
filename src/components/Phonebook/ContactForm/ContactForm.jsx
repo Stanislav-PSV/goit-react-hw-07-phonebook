@@ -55,9 +55,8 @@ export default function ContactForm() {
 						title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
 						value={name}
 						required
-						placeholder=" "
+						placeholder="Name"
 					/>
-					Name
 				</label>
 
 				<label htmlFor="number">
@@ -69,9 +68,8 @@ export default function ContactForm() {
 						title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
 						value={number}
 						required
-						placeholder=" "
+						placeholder="Phone number"
 					/>
-					Phone number
 				</label>
 			</InputContainer>
 
