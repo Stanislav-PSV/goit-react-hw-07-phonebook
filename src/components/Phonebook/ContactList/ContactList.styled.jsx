@@ -18,10 +18,10 @@ font-size: 20px;
 
 export const ButtonClose = styled.button`
 padding: 0 5px 5px 5px;
-font-size: 30px;
-width: 40px;
-background-color: inherit;
-border: 1px solid var(--color-button);
+font-size: 20px;
+width: 30px;
+background-color: #C0C0C0;
+border: 1px solid #000000;
 border-radius: 5px;
-color: var(--color-button);
+color: #000000;
 `
