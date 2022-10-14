@@ -1,44 +1,39 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const contactsList = [
-  { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-  { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-  { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-  { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-];
-
-// Slice
-const contacts = createSlice({
-  name: 'contacts:',
-  initialState: {
-    item: contactsList,
-    filter: '',
-  },
-  reducers: {
-    newContacts(state, action) {
-      state.item = [...state.item, action.payload];
-    },
-    deleteC(state, action) {
-      state.item = state.item.filter(x => x.id !== action.payload);
-    },
-    filterValue(state, action) {
-      state.filter = action.payload;
-    },
-  },
+export const contactsApi = createApi({
+  reducerPath: 'contacts',
+  baseQuery: fetchBaseQuery({
+    baseUrl: 'https://62dd5ef1ccdf9f7ec2c60cc5.mockapi.io',
+  }),
+  tagTypes: ['Contacts'],
+  endpoints: builder => ({
+    getContacts: builder.query({
+      query: () => ({
+        url: '/contacts',
+        method: 'GET',
+      }),
+      providesTags: ['Contacts'],
+    }),
+    addContacts: builder.mutation({
+      query: ({ name, phone }) => ({
+        url: '/contacts',
+        method: 'POST',
+        body: { name, phone },
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+    deleteContacts: builder.mutation({
+      query: id => ({
+        url: `/contacts/${id}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Contacts'],
+    }),
+  }),
 });
 
-const persistConfig = {
-  key: 'contacts-list',
-  storage,
-  whitelist: ['item'],
-};
-
-export const contactsReducer = persistReducer(persistConfig, contacts.reducer);
-export const { newContacts, deleteC, filterValue } = contacts.actions;
-
-// Select
-
-export const getItem = state => state.contacts.item;
-export const getFilter = state => state.contacts.filter;
+export const {
+  useGetContactsQuery,
+  useAddContactsMutation,
+  useDeleteContactsMutation,
+} = contactsApi;

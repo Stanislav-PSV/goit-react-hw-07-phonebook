@@ -1,4 +1,15 @@
 import styled from "@emotion/styled";
+import Skeleton from '../Loader/Skeleton';
+
+export const PreLoader = styled(Skeleton)`
+  margin-top: 20px;
+`
+
+export const List = styled.ul`
+  margin-top: 20px;
+  display: grid;
+  gap: 15px;
+`
 
 export const Item = styled.li`
 &:not(:last-child){
@@ -9,19 +20,12 @@ align-items: center;
 justify-content: space-between;
 font-size: 24px;
 `
-
-export const Contact = styled.p`
+export const NameContact = styled.p`
 margin-right: 10px;
 font-size: 20px;
-
 `
-
 export const ButtonClose = styled.button`
-padding: 0 5px 5px 5px;
-font-size: 20px;
+padding: 5px 5px 5px 5px;
+font-size: 10px;
 width: 30px;
-background-color: #C0C0C0;
-border: 1px solid #000000;
-border-radius: 5px;
-color: #000000;
 `

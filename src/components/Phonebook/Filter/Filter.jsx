@@ -1,15 +1,16 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { InputFilter, LabelFilter } from './Filter.styled';
-import { filterValue, getFilter } from 'redux/itemsContact';
+import { setFilter } from 'redux/filterContacts';
+import { getFilterContacts } from 'redux/filterContacts';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const filter = useSelector(getFilter);
+  const filter = useSelector(getFilterContacts);
   return (
     <LabelFilter htmlFor="filter">
       <InputFilter
         onChange={event =>
-          dispatch(filterValue(event.target.value.toLowerCase()))
+          dispatch(setFilter(event.target.value.toLowerCase()))
         }
         type="filter"
         value={filter}
